@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -71,5 +72,16 @@ class User extends Authenticatable implements JWTSubject
     public function plants()
     {
         return $this->hasMany(Plant::class);
+    }
+
+    /**
+     * @param $password
+     */
+    public function setPasswordAttribute($password)
+    {
+        if(trim($password) === '') {
+            return;
+        }
+        $this->attributes['password'] = Hash::make($password);
     }
 }

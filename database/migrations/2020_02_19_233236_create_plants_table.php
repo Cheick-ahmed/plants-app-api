@@ -20,7 +20,7 @@ class CreatePlantsTable extends Migration
             $table->string('n_vernaculaire');
             $table->string('ng_latin');
             $table->string('ne_latin');
-            $table->boolean('is_toxic')->default(false);
+            $table->boolean('is_toxic');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
