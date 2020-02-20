@@ -19,4 +19,13 @@ Route::group(['prefix' => 'users' , 'middleware' => 'auth:api'], function () {
     Route::patch('{user}','UserController@update');
 });
 
+Route::group(['prefix' => 'plants' , 'namespace' => 'Plant'], function () {
+    Route::get('','PlantController@index');
+    Route::post('','PlantController@store');
+    Route::get('{plant}','PlantController@show');
+    Route::patch('{plant}','PlantController@update');
+    Route::delete('{plant}','PlantController@destroy');
+});
+
+
 

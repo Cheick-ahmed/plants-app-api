@@ -17,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name','email', 'password','is_confirmed'
+        'first_name', 'last_name', 'email', 'password', 'is_confirmed'
     ];
 
     /**
@@ -38,7 +38,7 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-     public function getJWTIdentifier()
+    public function getJWTIdentifier()
     {
         return $this->getKey();
     }
@@ -48,8 +48,9 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function is_confirmed()  {
-         return $this->is_confirmed == 0 ? false : true;
+    public function is_confirmed()
+    {
+        return $this->is_confirmed == 0 ? false : true;
     }
 
     public function scopeConfirmed(Builder $builder)
@@ -65,5 +66,10 @@ class User extends Authenticatable implements JWTSubject
     public function getRouteKeyName()
     {
         return 'last_name';
+    }
+
+    public function plants()
+    {
+        return $this->hasMany(Plant::class);
     }
 }
