@@ -36,6 +36,14 @@ class Plant extends Model
 
     public function toSearchableArray()
     {
-        return array(new  PlantResource($this));
+        return array(new PlantResource($this));
     }
+
+
+    public function searchable()
+    {
+
+    }
+
+
 }
