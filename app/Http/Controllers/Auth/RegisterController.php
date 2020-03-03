@@ -17,7 +17,7 @@ class RegisterController extends Controller
            'last_name' => $request->last_name,
            'email' => $request->email,
            'is_confirmed' => false,
-           'password' => bcrypt($request->password)
+           'password' => $request->password
        ]);
 
        return new PrivateUserResource($user);

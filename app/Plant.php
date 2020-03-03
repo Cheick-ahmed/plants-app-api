@@ -2,8 +2,13 @@
 
 namespace App;
 
+
+use App\Filters\Plant\PlantFilters;
+use App\Http\Resources\ImageResource;
 use App\Http\Resources\PlantResource;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 
@@ -18,6 +23,11 @@ class Plant extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function images()
+    {
+        return $this->belongsToMany(Image::class);
     }
 
     public static function boot()
@@ -39,10 +49,9 @@ class Plant extends Model
         return array(new PlantResource($this));
     }
 
-
-    public function searchable()
+    public function scopeFilter(Builder $builder, Request $request, array $filters = [])
     {
-
+        return (new PlantFilters($request))->add($filters)->filter($builder);
     }
 
 

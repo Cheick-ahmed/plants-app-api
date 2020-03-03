@@ -27,5 +27,9 @@ Route::group(['prefix' => 'plants' , 'namespace' => 'Plant'], function () {
     Route::delete('{plant}','PlantController@destroy');
 });
 
+/**
+ * Upload
+ */
 
+Route::post('upload', 'ImageController');
 

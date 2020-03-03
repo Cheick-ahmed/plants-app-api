@@ -20,6 +20,9 @@ class PlantResource extends JsonResource
             'is_toxic' => $this->is_toxic,
             'author' => [
                 'data' => new PrivateUserResource($this->user)
+            ],
+            'display' => [
+                'data' => new ImageResource($this->images()->first())
             ]
         ];
     }
