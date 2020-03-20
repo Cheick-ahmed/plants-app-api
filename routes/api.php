@@ -9,14 +9,20 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     Route::get('me','MeController');
 });
 
+Route::group(['prefix' => 'me', 'namespace' => 'Me'], function () {
+    Route::get('plants','PlantController@index');
+});
+
+
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth:api'], function () {
     Route::resource('','AdminController')->only(['index', 'update']);
     Route::resource('users','UserController');
 });
 
-Route::group(['prefix' => 'users' , 'middleware' => 'auth:api'], function () {
+Route::group(['prefix' => 'users','namespace' => 'User'], function () {
     Route::get('{user}','UserController@show');
-    Route::patch('{user}','UserController@update');
+    Route::get('{user}/plants','PlantController');
 });
 
 Route::group(['prefix' => 'plants' , 'namespace' => 'Plant'], function () {

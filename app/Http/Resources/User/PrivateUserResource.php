@@ -19,7 +19,8 @@ class PrivateUserResource extends JsonResource
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'email' => $this->email,
-            'is_confirmed' => $this->is_confirmed()
+            'is_confirmed' => $this->is_confirmed(),
+            'joined_at' => isset($this->created_at) ? $this->created_at->toDateTimeString() : '2020-03-11 21:00:00'
         ];
     }
 }

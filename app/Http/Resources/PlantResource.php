@@ -23,7 +23,7 @@ class PlantResource extends JsonResource
             ],
             'display' => [
                 'data' => new ImageResource($this->images()->first())
-            ]
+            ],
         ];
     }
 }

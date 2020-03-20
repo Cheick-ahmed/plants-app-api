@@ -17,12 +17,17 @@ class Plant extends Model
     use Searchable;
 
     protected $fillable = [
-        'n_vernaculaire', 'ng_latin', 'ne_latin', 'is_toxic', 'user_id', 'family', 'slug'
+        'n_vernaculaire', 'ng_latin', 'ne_latin', 'is_toxic', 'user_id', 'family', 'slug', 'public'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopePublic(Builder $builder)
+    {
+        $builder->where('public', true);
     }
 
     public function images()
@@ -37,6 +42,10 @@ class Plant extends Model
         static::creating(function (Plant $plant) {
             $plant->slug = Str::slug($plant->n_vernaculaire);
         });
+    }
+
+    public function is_toxic() {
+        return $this->is_toxic ? 'Toxique' : 'Non toxique';
     }
 
     public function getRouteKeyName()

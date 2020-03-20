@@ -15,7 +15,7 @@ class PlantController extends Controller
 {
     public function index(Request $request)
     {
-        return PlantResource::collection(Plant::with(['user'])->filter($request)->paginate(2));
+        return PlantResource::collection(Plant::with(['user'])->filter($request)->paginate(20));
     }
 
     public function filters()
