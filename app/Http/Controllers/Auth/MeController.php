@@ -10,7 +10,7 @@ class MeController extends Controller
 {
     public function __construct()
     {
-        return $this->middleware(['auth:api']);
+        return $this->middleware(['auth']);
     }
 
     public function __invoke(Request $request)

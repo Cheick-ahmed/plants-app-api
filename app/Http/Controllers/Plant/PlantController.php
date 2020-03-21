@@ -25,10 +25,10 @@ class PlantController extends Controller
         ], 200);
     }
 
-    public function store(StorePlant $request)
+    public function store(Request $request)
     {
        $plant = $request->user()->plants()->create(
-           $request->only('n_vernaculaire', 'ng_latin', 'ne_latin', 'family', 'is_toxic')
+           $request->only('n_vernaculaire', 'ng_latin', 'ne_latin', 'family', 'is_toxic','public')
        );
 
        $plant->images()->attach($request->image_id);
@@ -44,7 +44,7 @@ class PlantController extends Controller
     public function update(StorePlant $request, Plant $plant)
     {
         $plant->update(
-            $request->only('n_vernaculaire', 'ng_latin', 'ne_latin', 'family', 'is_toxic')
+            $request->only('n_vernaculaire', 'ng_latin', 'ne_latin', 'family', 'is_toxic', 'public')
         );
     }
 
