@@ -52,12 +52,13 @@ class PlantController extends Controller
     {
 
         $i = $plant->images()->first();
+        if (isset($i)) {
+            $plant->images()->detach($i);
 
-        $plant->images()->detach($i);
+            Storage::disk('public')->delete('images/' . $i->hash_name);
 
-        Storage::disk('public')->delete('images/' . $i->hash_name);
-
-        Image::destroy($i->id);
+            Image::destroy($i->id);
+        }
 
         $plant->delete();
     }
